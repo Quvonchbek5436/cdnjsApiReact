@@ -38,7 +38,7 @@ const Header = () => {
     };
 
     return (
-        <AppBar position="static" sx={{backgroundColor: '#343535 !important',boxShadow:'none',alignItems:'center',position:'sticky',top:0,bottom:0}}>
+        <AppBar position="static" sx={{backgroundColor: '#343535 !important',boxShadow:'none',alignItems:'center',position:'sticky',top:0,bottom:0,zIndex:20}}>
             <Container maxWidth="xl" >
                 <Toolbar disableGutters>
                     <Typography
@@ -47,7 +47,7 @@ const Header = () => {
                         component="div"
                         sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
                     >
-                        <img height="40px" src="https://cdnjs.com/_/f7a2ebfb819c118086546e481876aef6.svg" alt=""/>
+                        <img height="40px" src="https://cdnjs.com/_/f7a2ebfb819c118086546e481876aef6.svg" alt="Logo"/>
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -106,7 +106,7 @@ const Header = () => {
                             </IconButton>
                         ))}
                     </Box>
-                    <Box sx={{ flexGrow: 1, display: 'flex',alignItems: 'center'}} >
+                    <Box sx={{ flexGrow: 1, display: 'flex',alignItems: 'center',justifyContent: 'end'}} >
                         <NavLink style={{color:'white',textDecoration:'none',marginLeft:'20px',fontSize:'20px' }} to={'/home'}>Home</NavLink>
                         <NavLink style={{color:'white',textDecoration:'none',marginLeft:'20px',fontSize:'20px' }} to={'/libraries'}>Libraries</NavLink>
                         <NavLink style={{color:'white',textDecoration:'none',marginLeft:'20px',fontSize:'20px' }} to={'/api'}>Api</NavLink>
@@ -114,35 +114,35 @@ const Header = () => {
                         <NavLink style={{color:'white',textDecoration:'none',marginLeft:'20px',fontSize:'20px' }} to={'/status'}>Status</NavLink>
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
+                    {/*<Box sx={{ flexGrow: 0 }}>*/}
+                    {/*    <Tooltip title="Open settings">*/}
+                    {/*        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>*/}
+                    {/*            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />*/}
+                    {/*        </IconButton>*/}
+                    {/*    </Tooltip>*/}
+                    {/*    <Menu*/}
+                    {/*        sx={{ mt: '45px' }}*/}
+                    {/*        id="menu-appbar"*/}
+                    {/*        anchorEl={anchorElUser}*/}
+                    {/*        anchorOrigin={{*/}
+                    {/*            vertical: 'top',*/}
+                    {/*            horizontal: 'right',*/}
+                    {/*        }}*/}
+                    {/*        keepMounted*/}
+                    {/*        transformOrigin={{*/}
+                    {/*            vertical: 'top',*/}
+                    {/*            horizontal: 'right',*/}
+                    {/*        }}*/}
+                    {/*        open={Boolean(anchorElUser)}*/}
+                    {/*        onClose={handleCloseUserMenu}*/}
+                    {/*    >*/}
+                    {/*        {settings.map((setting) => (*/}
+                    {/*            <MenuItem key={setting} onClick={handleCloseUserMenu}>*/}
+                    {/*                <Typography textAlign="center">{setting}</Typography>*/}
+                    {/*            </MenuItem>*/}
+                    {/*        ))}*/}
+                    {/*    </Menu>*/}
+                    {/*</Box>*/}
                 </Toolbar>
             </Container>
         </AppBar>

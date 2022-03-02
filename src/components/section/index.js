@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import {BsSearch} from "react-icons/bs";
 import {getLibraries} from "../../api/api";
+import {useNavigate} from "react-router-dom";
 
 const BoxSection = styled('div')(({ theme }) => ({
     background:`url(https://cdnjs.com/_/6da6dfe9adcee0de10efcad20d5b33d7.svg)`,
@@ -27,6 +28,10 @@ function Section(props) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
+    const navigate = useNavigate()
+    const getName=(name)=>{
+        navigate(`/libraries/${name}`);
+    }
 
     useEffect(async () => {
         // setLoading(true);
@@ -61,8 +66,10 @@ function Section(props) {
                                             ...params.InputProps,
                                             type: 'search',
                                         }}
+
                                     />
                                 )}
+                                onChange={(e)=>getName(e.target.value)}
                             />
                         </Stack>
 

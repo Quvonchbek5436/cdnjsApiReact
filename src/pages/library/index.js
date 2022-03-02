@@ -5,7 +5,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { getLibrary} from "../../api/api";
 import IconButton from "@mui/material/IconButton";
-import {BiCodeAlt, MdContentCopy} from "react-icons/all";
+import {BiCodeAlt} from "react-icons/bi";
+import { MdContentCopy} from "react-icons/md";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCode, faLink, faShield} from "@fortawesome/free-solid-svg-icons";
+import Box from "@mui/material/Box";
 
 function Library(props) {
     const params=useParams()
@@ -19,6 +23,7 @@ function Library(props) {
 
 
     }, []);
+    // console.log(data)
     return (
         <div>
             <Container>
@@ -31,9 +36,9 @@ function Library(props) {
 
                                     <Card   sx={{height:'100%',backgroundColor: '#343535'}}>
 
-                                        <CardContent>
+                                        <CardContent sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}   >
                                             <Typography gutterBottom sx={{color:'white'}} variant="h5" component="div" >
-                                                {items}
+                                                https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.31/{items}
                                             </Typography>
                                             {/*<Typography variant="body2" sx={{color:'white'}} color="text.secondary">*/}
                                             {/*    {data.latest}*/}
@@ -41,15 +46,11 @@ function Library(props) {
                                             {/*<Typography variant="body1" sx={{color:'white',marginTop:'10px'}} color="text.secondary">*/}
                                             {/*    {data.version}*/}
                                             {/*</Typography>*/}
-                                            <IconButton>
-                                                <MdContentCopy/>
-                                            </IconButton>
-                                            <IconButton>
-                                                <BiCodeAlt/>
-                                            </IconButton>
-                                            <IconButton>
-
-                                            </IconButton>
+                                            <Box sx={{justifyContent: 'end',alignItems:'center',}}>
+                                                <IconButton sx={{color:'#EBEBEB',fontSize:'16px',"&:hover":{color:'#BDBDBD'}}}><FontAwesomeIcon icon={faLink} /></IconButton>
+                                                <IconButton sx={{color:'#EBEBEB',fontSize:'16px',"&:hover":{color:'#BDBDBD'}}}><FontAwesomeIcon icon={faCode} /></IconButton>
+                                                <IconButton sx={{color:'#EBEBEB',fontSize:'16px',"&:hover":{color:'#BDBDBD'}}}><FontAwesomeIcon icon={faShield} /></IconButton>
+                                            </Box>
 
                                         </CardContent>
 

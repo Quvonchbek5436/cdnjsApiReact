@@ -16,7 +16,7 @@ import axios from "axios";
 export const getLibraries = async () => {
     try {
         const res = await axios.get(`https://api.cdnjs.com/libraries?limit=30`);
-        console.log(res.data.results)
+        // console.log(res.data.results)
         return { success: true, data: res.data.results };
     } catch (error) {
         return { success: false };

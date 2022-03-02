@@ -1,34 +1,38 @@
 import React, {useEffect, useState,} from 'react';
 import {useNavigate}from 'react-router-dom'
-import {getLibraries} from "../../api/api";
+import {getLibraries, getLibrary} from "../../api/api";
 import Container from "@mui/material/Container";
 import {Card, CardContent, Grid} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faCode, faLink, faShield} from "@fortawesome/free-solid-svg-icons";
 
 function Libraries(props) {
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    // const [dataM, setDataM] = useState([]);
 
-    useEffect(async () => {
-        // setLoading(true);
-        // setError(false);
-
-        const obj = await getLibraries();
-        if (obj.success) setData(obj.data);
-
-
-
-        // setLoading(false);
-    }, []);
-    console.log(data)
     const navigate = useNavigate()
     const getName=(name)=>{
         navigate(`/libraries/${name}`);
     }
+
+    useEffect(async () => {
+        const obj = await getLibraries();
+        if (obj.success) setData(obj.data);
+        // console.log(obj.data)
+
+    }, []);
+ // useEffect(async (name) => {
+ //     const obj1 = await getLibrary(name);
+ //     if (obj1.success) setDataM(obj1.data.assets[obj1.data.assets.length-1].version);
+ //    }, []);
+ //    console.log(dataM)
+
     return (
         <Container>
             <Stack spacing={2} sx={{ width: "100%",marginTop:'20px' }}>
@@ -47,8 +51,11 @@ function Libraries(props) {
                                 ...params.InputProps,
                                 type: 'search',
                             }}
+
                         />
                     )}
+                    onChange={(e)=>getName(e.target.value)}
+
                 />
             </Stack>
             <Grid container spacing={2}>
@@ -60,9 +67,21 @@ function Libraries(props) {
                                 <Card   sx={{height:'100%',backgroundColor: '#343535'}}>
 
                                     <CardContent>
-                                        <Typography gutterBottom sx={{color:'#FF6934',cursor:'pointer'}} variant="h5" component="div" onClick={()=>getName(items.name)}>
-                                            {items.name}
-                                        </Typography>
+                                        <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                                            <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:2,}}>
+                                                <Typography gutterBottom sx={{color:'#FF6934',cursor:'pointer'}} variant="h5" component="h3" onClick={()=>getName(items.name)}>
+                                                    {items.name}
+                                                </Typography>
+                                                {/*<Typography gutterBottom sx={{color:'#FF6934',cursor:'pointer'}} variant="h5" component="h3">*/}
+                                                {/*    {dataM.assets[dataM.assets.length-1].version}*/}
+                                                {/*</Typography>*/}
+                                            </Box>
+                                            <Box sx={{justifyContent: 'end',alignItems:'center',}}>
+                                                <IconButton sx={{color:'#EBEBEB',fontSize:'16px',"&:hover":{color:'#BDBDBD'}}}><FontAwesomeIcon icon={faLink} /></IconButton>
+                                                <IconButton sx={{color:'#EBEBEB',fontSize:'16px',"&:hover":{color:'#BDBDBD'}}}><FontAwesomeIcon icon={faCode} /></IconButton>
+                                                <IconButton sx={{color:'#EBEBEB',fontSize:'16px',"&:hover":{color:'#BDBDBD'}}}><FontAwesomeIcon icon={faShield} /></IconButton>
+                                            </Box>
+                                        </Box>
                                         <Typography variant="body2" sx={{color:'white'}} color="text.secondary">
                                             {items.latest}
                                         </Typography>
