@@ -38,7 +38,7 @@ function Library(props) {
 
                                         <CardContent sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}   >
                                             <Typography gutterBottom sx={{color:'white'}} variant="h5" component="div" >
-                                                https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.31/{items}
+                                                https://cdnjs.cloudflare.com/ajax/libs/{items}
                                             </Typography>
                                             {/*<Typography variant="body2" sx={{color:'white'}} color="text.secondary">*/}
                                             {/*    {data.latest}*/}
